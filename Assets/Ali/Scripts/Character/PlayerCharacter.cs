@@ -14,6 +14,9 @@ public class PlayerCharacter : Character
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
+        if (MovableComponent == null)
+            return;
+
         MovableComponent.Move(moveDirection);
         MovableComponent.Rotate(moveDirection);
     }

@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
-        player.Initialize();
         isGameActive = false;
     }
 
@@ -34,6 +32,6 @@ public class GameManager : MonoBehaviour
             return;
 
         isGameActive = true;
-
+        player.Initialize();
     }
 }

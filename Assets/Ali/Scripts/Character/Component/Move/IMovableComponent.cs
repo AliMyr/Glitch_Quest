@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class IMovableComponent : MonoBehaviour
+public interface IMovableComponent : ICharacterComponent
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float Speed { get; set; }
+    Vector3 Position { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Move(Vector3 direction);
+    void Rotate(Vector3 direction);
 }

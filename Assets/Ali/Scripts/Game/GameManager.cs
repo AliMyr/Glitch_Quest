@@ -1,18 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private Character character;
+    private bool isGameActive;
+    public static GameManager Instance { get; private set; }
+
+    public Character player;
 
     private void Awake()
     {
-        character = GetComponent<Character>();
 
-        character.Initialize();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    
+    private void Initialize()
+    {
+        player.Initialize();
+        isGameActive = false;
+    }
+
+    public void StartGame()
+    {
+        if (isGameActive || player == null)
+            return;
+
+        isGameActive = true;
+
+    }
 }

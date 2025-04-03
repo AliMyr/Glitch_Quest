@@ -5,6 +5,9 @@ public class PlayerCharacter : Character
     public override void Initialize()
     {
         base.Initialize();
+
+        //mechanicManager.RegisterMechanic(2, new RotateMechanic());
+        //mechanicManager.RegisterMechanic(3, new JumpMechanic());
     }
 
     public override void Update()

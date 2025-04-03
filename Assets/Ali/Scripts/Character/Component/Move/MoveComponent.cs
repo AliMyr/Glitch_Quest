@@ -16,7 +16,7 @@ public class MoveComponent : IMovableComponent
         }
     }
 
-    public void Intitialize(Character selfCharacter)
+    public void Initialize(Character selfCharacter)
     {
         this.selfCharacter = selfCharacter ?? throw new System.ArgumentNullException(nameof(selfCharacter));
         this.Speed = selfCharacter.CharacterData.DefaultSpeed;

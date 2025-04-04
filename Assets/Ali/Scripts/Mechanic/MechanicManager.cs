@@ -35,4 +35,13 @@ public class MechanicManager
             }
         }
     }
+
+    public void UpdateMechanics()
+    {
+        foreach (var mechanic in activeMechanics)
+        {
+            if (mechanic is IUpdatableMechanic updatable)
+                updatable.Update();
+        }
+    }
 }

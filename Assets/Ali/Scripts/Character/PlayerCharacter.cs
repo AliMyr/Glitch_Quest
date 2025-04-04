@@ -26,5 +26,7 @@ public class PlayerCharacter : Character
 
         MovableComponent.Move(moveDirection);
         MovableComponent.Rotate(moveDirection);
+
+        
     }
 }

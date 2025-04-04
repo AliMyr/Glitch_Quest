@@ -5,6 +5,8 @@ public class MoveComponent : IMovableComponent
     private Character selfCharacter;
     private float turnSmoothVelocity;
 
+    public bool RotationEnabled { get; set; }
+
     public float Speed { get; set; }
     public Vector3 Position
     {
@@ -20,6 +22,7 @@ public class MoveComponent : IMovableComponent
     {
         this.selfCharacter = selfCharacter ?? throw new System.ArgumentNullException(nameof(selfCharacter));
         this.Speed = selfCharacter.CharacterData.DefaultSpeed;
+        RotationEnabled = false;
     }
 
     public void Move(Vector3 direction)
@@ -35,7 +38,7 @@ public class MoveComponent : IMovableComponent
 
     public void Rotate(Vector3 direction)
     {
-        if (direction == Vector3.zero || selfCharacter?.CharacterTransform == null)
+        if (!RotationEnabled || direction == Vector3.zero || selfCharacter?.CharacterTransform == null)
             return;
 
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;

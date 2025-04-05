@@ -21,27 +21,13 @@ public class InventoryMechanic : IMechanic, IUpdatableMechanic
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (currentItem == null)
-                PickupNearbyItem();
-            else
-                Debug.Log("Inventory full");
-        }
+            PickupNearbyItem();
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if (currentItem != null)
-            {
-                Item duplicate = new Item(currentItem.Name);
-                Debug.Log("Item duplicated: " + duplicate.Name);
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.U) && currentItem != null)
+            Debug.Log("Item duplicated: " + new Item(currentItem.Name).Name);
 
         if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (currentItem != null)
-                DropItem();
-        }
+            DropItem();
     }
 
     private void PickupNearbyItem()

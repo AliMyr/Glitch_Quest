@@ -27,13 +27,10 @@ public class MoveComponent : IMovableComponent
 
     public void Move(Vector3 direction)
     {
-        if (direction == Vector3.zero || selfCharacter?.CharacterController == null)
-            return;
+        if (direction == Vector3.zero || selfCharacter?.CharacterController == null) return;
 
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        Vector3 movement = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
-
-        selfCharacter.CharacterController.Move(movement * Speed * Time.deltaTime);
+        Vector3 movement = direction.normalized * Speed * Time.deltaTime;
+        selfCharacter.CharacterController.Move(movement);
     }
 
     public void Rotate(Vector3 direction)
@@ -41,14 +38,16 @@ public class MoveComponent : IMovableComponent
         if (!RotationEnabled || direction == Vector3.zero || selfCharacter?.CharacterTransform == null)
             return;
 
+        if (!RotationEnabled || direction == Vector3.zero) return;
+
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(
+        float smoothedAngle = Mathf.SmoothDampAngle(
             selfCharacter.CharacterTransform.eulerAngles.y,
             targetAngle,
             ref turnSmoothVelocity,
             0.1f
         );
 
-        selfCharacter.CharacterTransform.rotation = Quaternion.Euler(0, angle, 0);
+        selfCharacter.CharacterTransform.rotation = Quaternion.Euler(0, smoothedAngle, 0);
     }
 }

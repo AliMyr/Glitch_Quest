@@ -21,10 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Initialize()
-    {
-        isGameActive = false;
-    }
+    private void Initialize() => isGameActive = false;
+
 
     public void StartGame()
     {

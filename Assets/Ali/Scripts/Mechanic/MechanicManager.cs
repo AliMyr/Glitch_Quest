@@ -22,17 +22,15 @@ public class MechanicManager
 
     public void ActivateMechanicsForLevel(int level)
     {
-        if (levelMechanics.TryGetValue(level, out var mechanics))
+        if (!levelMechanics.TryGetValue(level, out var mechanics)) return;
+
+        foreach (var mechanic in mechanics)
         {
-            foreach (var mechanic in mechanics)
-            {
-                if (!activeMechanics.Contains(mechanic))
-                {
-                    mechanic.Initialize(character);
-                    mechanic.Enable();
-                    activeMechanics.Add(mechanic);
-                }
-            }
+            if (activeMechanics.Contains(mechanic)) continue;
+
+            mechanic.Initialize(character);
+            mechanic.Enable();
+            activeMechanics.Add(mechanic);
         }
     }
 

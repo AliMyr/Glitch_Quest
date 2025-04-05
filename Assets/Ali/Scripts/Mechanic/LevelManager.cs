@@ -20,15 +20,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void Initialize(MechanicManager mechanicManager)
+    public void Initialize(MechanicManager manager)
     {
-        this.mechanicManager = mechanicManager;
-        mechanicManager.ActivateMechanicsForLevel(CurrentLevel);
+        this.mechanicManager = manager;
+        ActivateMechanicsForCurrentLevel();
     }
 
-    public void NextLevel()
+    public void TransitionToLevel(int level)
     {
-        CurrentLevel++;
-        mechanicManager.ActivateMechanicsForLevel(CurrentLevel);
+        CurrentLevel = level;
+        ActivateMechanicsForCurrentLevel();
+        Debug.Log("Переход на уровень: " + CurrentLevel);
+    }
+
+    private void ActivateMechanicsForCurrentLevel()
+    {
+        if (mechanicManager != null)
+            mechanicManager.ActivateMechanicsForLevel(CurrentLevel);
     }
 }

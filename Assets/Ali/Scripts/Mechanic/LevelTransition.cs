@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class LevelTransition : MonoBehaviour
 {
-    private void Update()
+    [SerializeField] private int targetLevel;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (other.CompareTag("Player"))
         {
-            LevelManager.Instance.NextLevel();
-            Debug.Log("Current Level: " + LevelManager.Instance.CurrentLevel);
+            LevelManager.Instance.TransitionToLevel(targetLevel);
         }
     }
 }

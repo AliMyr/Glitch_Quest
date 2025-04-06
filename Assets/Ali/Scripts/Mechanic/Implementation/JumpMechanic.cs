@@ -1,41 +1,36 @@
 using UnityEngine;
 
-public class JumpMechanic : IMechanic, IUpdatableMechanic
+public class JumpMechanic : ICharacterComponent, IMechanic, IUpdatableMechanic
 {
     private Character character;
-    
-    public float JumpForce {get; set;}
-    public float Gravity {get; set;}
-    public float VerticalVelocity { get; set;}
+    public float JumpForce { get; set; }
+    public float Gravity { get; set; }
+    public float VerticalVelocity { get; set; }
 
-
-    public void Initialize(Character character)
+    public void Initialize(Character selfCharacter)
     {
-        this.character = character;
-        this.JumpForce = character.CharacterData.JumpForce;
-        this.Gravity = character.CharacterData.Gravity;
-        this.VerticalVelocity = character.CharacterData.VerticalVelocity;
-        
+        character = selfCharacter;
+        JumpForce = selfCharacter.CharacterData.JumpForce;
+        Gravity = selfCharacter.CharacterData.Gravity;
         VerticalVelocity = 0f;
     }
 
-    public void Enable()
-    {
-        // Механика прыжка включена
-    }
+    public void Enable() { }
 
-    public void Disable()
-    {
-        // Механика прыжка отключена
-    }
+    public void Disable() { }
 
     public void Update()
     {
+        if (character == null || character.CharacterController == null) return;
+
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;
             if (Input.GetButtonDown("Jump"))
+            {
                 VerticalVelocity = JumpForce;
+                character.AnimationComponent?.SetTrigger("JumpTrigger");
+            }
         }
         else
         {
@@ -43,10 +38,5 @@ public class JumpMechanic : IMechanic, IUpdatableMechanic
         }
         Vector3 jumpMovement = new Vector3(0, VerticalVelocity, 0);
         character.CharacterController.Move(jumpMovement * Time.deltaTime);
-
-        if (character.AnimationComponent is IAnimationComponent animation)
-        {
-            animation.SetTrigger("JumpTrigger");
-        }
     }
 }

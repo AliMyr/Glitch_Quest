@@ -20,11 +20,12 @@ public class JumpComponent : IJumpComponent
     public void Enable() => isActive = true;
     public void Disable() => isActive = false;
 
-    public void Update()
+    public Vector3 CalculateJumpMovement()
     {
-        if (!isActive) return;
+        if (!isActive) return Vector3.zero;
         if (character == null || character.CharacterController == null)
-            return;
+            return Vector3.zero;
+
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;
@@ -38,7 +39,10 @@ public class JumpComponent : IJumpComponent
         {
             VerticalVelocity += Gravity * Time.deltaTime;
         }
-        Vector3 jumpMovement = new Vector3(0, VerticalVelocity, 0);
-        character.CharacterController.Move(jumpMovement * Time.deltaTime);
+        return new Vector3(0, VerticalVelocity, 0);
+    }
+
+    public void Update()
+    {
     }
 }

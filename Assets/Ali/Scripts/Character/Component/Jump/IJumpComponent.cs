@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public interface IJumpComponent : ICharacterComponent, IUpdatableMechanic
 {
     float JumpForce { get; set; }
@@ -5,4 +7,5 @@ public interface IJumpComponent : ICharacterComponent, IUpdatableMechanic
     float VerticalVelocity { get; set; }
     void Enable();
     void Disable();
+    Vector3 CalculateJumpMovement();
 }

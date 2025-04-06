@@ -16,16 +16,21 @@ public class MovementComponent : IMovementComponent
         Speed = character.CharacterData.DefaultSpeed;
     }
 
-    public void Move(Vector3 direction)
+    public Vector3 CalculateMovement(Vector3 direction)
     {
-        if (direction == Vector3.zero || character?.CharacterController == null)
+        if (direction == Vector3.zero)
         {
             character.AnimationComponent.SetValue("Movement", 0);
-            return;
+            return Vector3.zero;
         }
-        Vector3 movement = direction.normalized * Speed * Time.deltaTime;
-        character.CharacterController.Move(movement);
+        Vector3 movement = direction.normalized * Speed;
         character.AnimationComponent.SetValue("Movement", Speed);
+        return movement;
+    }
+
+    public void Move(Vector3 direction)
+    {
+        
     }
 }
 

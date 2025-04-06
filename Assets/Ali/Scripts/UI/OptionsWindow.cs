@@ -9,6 +9,8 @@ public class OptionsWindow : Window
 
     public override void Initialize()
     {
+        musicToggle.onValueChanged.AddListener(ToggleMusic);
+        soundsToggle.onValueChanged.AddListener(ToggleSounds);
         closeButton.onClick.AddListener(CloseOptions);
     }
 
@@ -38,4 +40,15 @@ public class OptionsWindow : Window
         Hide(true);
         GameManager.Instance.WindowsService.ShowWindow<MainMenuWindow>(false);
     }
+    private void ToggleSounds(bool isEnabled)
+    {
+        SimpleAudioService.Instance.SetVolume(AudioSystemType.Sounds, isEnabled);
+        SimpleAudioService.Instance.SetVolume(AudioSystemType.UISounds, isEnabled);
+    }
+
+    private void ToggleMusic(bool isEnabled)
+    {
+        SimpleAudioService.Instance.SetVolume(AudioSystemType.Ambient, isEnabled);
+    }
+
 }

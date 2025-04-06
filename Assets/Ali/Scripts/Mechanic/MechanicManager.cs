@@ -16,18 +16,15 @@ public class MechanicManager
     {
         if (!levelMechanics.ContainsKey(level))
             levelMechanics[level] = new List<IMechanic>();
-
         levelMechanics[level].Add(mechanic);
     }
 
     public void ActivateMechanicsForLevel(int level)
     {
         if (!levelMechanics.TryGetValue(level, out var mechanics)) return;
-
         foreach (var mechanic in mechanics)
         {
             if (activeMechanics.Contains(mechanic)) continue;
-
             mechanic.Initialize(character);
             mechanic.Enable();
             activeMechanics.Add(mechanic);

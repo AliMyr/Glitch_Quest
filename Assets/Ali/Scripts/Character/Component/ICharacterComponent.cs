@@ -1,4 +1,4 @@
 public interface ICharacterComponent
 {
-    void Initialize(Character selfCharacter);
+    void Initialize(Character character);
 }

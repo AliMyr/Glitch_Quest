@@ -4,7 +4,6 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
     public int CurrentLevel { get; private set; } = 1;
-
     private MechanicManager mechanicManager;
 
     private void Awake()
@@ -22,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public void Initialize(MechanicManager manager)
     {
-        this.mechanicManager = manager;
+        mechanicManager = manager;
         ActivateMechanicsForCurrentLevel();
     }
 
@@ -30,12 +29,11 @@ public class LevelManager : MonoBehaviour
     {
         CurrentLevel = level;
         ActivateMechanicsForCurrentLevel();
-        Debug.Log("Переход на уровень: " + CurrentLevel);
+        Debug.Log("Transition to level: " + CurrentLevel);
     }
 
     private void ActivateMechanicsForCurrentLevel()
     {
-        if (mechanicManager != null)
-            mechanicManager.ActivateMechanicsForLevel(CurrentLevel);
+        mechanicManager?.ActivateMechanicsForLevel(CurrentLevel);
     }
 }

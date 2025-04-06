@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameplayWindow : Window
 {
-    [SerializeField] private TMP_Text level ;
+    [SerializeField] private TMP_Text levelText;
 
     private Character player;
 
@@ -36,6 +36,6 @@ public class GameplayWindow : Window
     private void Update()
     {
         if (LevelManager.Instance != null)
-            level.text = $"Level: {LevelManager.Instance.CurrentLevel}";
+            levelText.text = "Level: " + LevelManager.Instance.CurrentLevel;
     }
 }

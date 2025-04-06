@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour
 
     public IMovableComponent MovableComponent { get; private set; }
     public IAnimationComponent AnimationComponent { get; private set; }
-    protected MechanicManager MechanicManager { get; private set; }
+    protected MechanicManager mechanicManager { get; private set; }
 
     public CharacterData CharacterData => characterData;
     public Transform CharacterTransform => characterTransform;
@@ -24,12 +24,12 @@ public abstract class Character : MonoBehaviour
         AnimationComponent = new CharacterAnimationComponent();
         AnimationComponent.Initialize(this);
 
-        MechanicManager = new MechanicManager();
-        MechanicManager.Initialize(this);
+        mechanicManager = new MechanicManager();
+        mechanicManager.Initialize(this);
 
-        LevelManager.Instance.Initialize(MechanicManager);
-        MechanicManager.ActivateMechanicsForLevel(LevelManager.Instance.CurrentLevel);
+        LevelManager.Instance.Initialize(mechanicManager);
+        mechanicManager.ActivateMechanicsForLevel(LevelManager.Instance.CurrentLevel);
     }
 
-    public abstract void Update();
+    public abstract void CharacterUpdate();
 }

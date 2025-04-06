@@ -3,13 +3,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private WindowsService windowsService;
-    private bool isGameActive;
+    private bool gameActive;
 
     public static GameManager Instance { get; private set; }
     public WindowsService WindowsService => windowsService;
-    public bool IsGameActive => isGameActive;
-
-    public Character player;
+    public bool IsGameActive => gameActive;
+    public Character Player;
 
     private void Awake()
     {
@@ -26,15 +25,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Initialize() => isGameActive = false;
-
+    private void Initialize()
+    {
+        gameActive = false;
+    }
 
     public void StartGame()
     {
-        if (isGameActive || player == null)
-            return;
-
-        isGameActive = true;
-        player.Initialize();
+        if (gameActive || Player == null) return;
+        gameActive = true;
+        Player.Initialize();
     }
 }

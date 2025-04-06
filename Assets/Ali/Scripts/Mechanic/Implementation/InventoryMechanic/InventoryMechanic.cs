@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InventoryMechanic : IMechanic, IUpdatableMechanic
+public class InventoryMechanic : MonoBehaviour, IMechanic, IUpdatableMechanic
 {
     private Character character;
     private Item currentItem;
@@ -13,19 +13,15 @@ public class InventoryMechanic : IMechanic, IUpdatableMechanic
     }
 
     public void Initialize(Character character) => this.character = character;
-
     public void Enable() { }
-
     public void Disable() { }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
             PickupNearbyItem();
-
         if (Input.GetKeyDown(KeyCode.U) && currentItem != null)
             Debug.Log("Item duplicated: " + new Item(currentItem.Name).Name);
-
         if (Input.GetKeyDown(KeyCode.Q))
             DropItem();
     }
@@ -37,12 +33,12 @@ public class InventoryMechanic : IMechanic, IUpdatableMechanic
         {
             if (collider.CompareTag("Pickup"))
             {
-                PickupItem pickup = collider.GetComponent<PickupItem>();
+                var pickup = collider.GetComponent<PickupItem>();
                 if (pickup != null)
                 {
                     currentItem = new Item(pickup.itemName);
                     Debug.Log("Picked up item: " + currentItem.Name);
-                    Object.Destroy(collider.gameObject);
+                    Destroy(collider.gameObject);
                     return;
                 }
             }
@@ -54,10 +50,13 @@ public class InventoryMechanic : IMechanic, IUpdatableMechanic
     {
         if (itemPrefab != null)
         {
-            Vector3 dropPosition = character.CharacterTransform.position + character.CharacterTransform.forward;
-            Object.Instantiate(itemPrefab, dropPosition, Quaternion.identity);
+            Vector3 dropPosition = character.CharacterTransform.position +
+                                   character.CharacterTransform.forward +
+                                   new Vector3(0, 0.5f, 0);
+            Instantiate(itemPrefab, dropPosition, Quaternion.identity);
         }
-        Debug.Log("Item dropped: " + currentItem.Name);
+        Debug.Log("Item dropped: " + currentItem?.Name);
         currentItem = null;
     }
+
 }

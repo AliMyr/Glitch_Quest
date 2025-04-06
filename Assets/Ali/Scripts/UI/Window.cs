@@ -10,28 +10,23 @@ public abstract class Window : MonoBehaviour
     [SerializeField] protected string hiddenAnimationName;
 
     public bool IsOpened { get; protected set; }
-
-    private Animator WindowAnimator => windowAnimator ??= GetComponent<Animator>();
+    private Animator Animator => windowAnimator ??= GetComponent<Animator>();
 
     public virtual void Initialize() { }
 
-    public void Show(bool isImmediately)
+    public void Show(bool immediate)
     {
         OpenStart();
-        WindowAnimator.Play(isImmediately ? idleAnimationName : openAnimationName);
-
-        if (isImmediately)
-            OpenEnd();
+        Animator.Play(immediate ? idleAnimationName : openAnimationName);
+        if (immediate) OpenEnd();
     }
 
-    public void Hide(bool isImmediately)
+    public void Hide(bool immediate)
     {
         CloseStart();
-        if (WindowAnimator != null && gameObject.activeInHierarchy)
-            WindowAnimator.Play(isImmediately ? hiddenAnimationName : closeAnimationName);
-
-        if (isImmediately)
-            CloseEnd();
+        if (Animator != null && gameObject.activeInHierarchy)
+            Animator.Play(immediate ? hiddenAnimationName : closeAnimationName);
+        if (immediate) CloseEnd();
     }
 
     protected virtual void OpenStart()
@@ -39,7 +34,6 @@ public abstract class Window : MonoBehaviour
         gameObject.SetActive(true);
         IsOpened = true;
     }
-
     protected virtual void OpenEnd() { }
     protected virtual void CloseStart() => IsOpened = false;
     protected virtual void CloseEnd() => gameObject.SetActive(false);

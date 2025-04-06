@@ -4,12 +4,12 @@ public class RotateMechanic : IMechanic
     public void Initialize(Character character) => this.character = character;
     public void Enable()
     {
-        if (character.MovableComponent is MoveComponent moveComponent)
-            moveComponent.RotationEnabled = true;
+        if (character.MovableComponent is MoveComponent moveComp)
+            moveComp.RotationEnabled = true;
     }
     public void Disable()
     {
-        if (character.MovableComponent is MoveComponent moveComponent)
-            moveComponent.RotationEnabled = false;
+        if (character.MovableComponent is MoveComponent moveComp)
+            moveComp.RotationEnabled = false;
     }
 }

@@ -7,13 +7,11 @@ public class CameraService : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GameManager.Instance.player is { } player && Camera.main is { } mainCamera)
+        var gm = GameManager.Instance;
+        if (gm?.player != null && Camera.main != null)
         {
-            mainCamera.transform.position = Vector3.Lerp(
-                mainCamera.transform.position,
-                player.transform.position + offset,
-                lerpSpeed * Time.deltaTime
-            );
+            Vector3 targetPos = gm.player.transform.position + offset;
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPos, lerpSpeed * Time.deltaTime);
         }
     }
 }

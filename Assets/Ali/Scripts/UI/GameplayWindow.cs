@@ -21,11 +21,11 @@ public class GameplayWindow : Window
     protected override void CloseStart()
     {
         base.CloseStart();
-        if (player == null) return;
     }
 
     private void Update()
     {
-
+        if (LevelManager.Instance != null)
+            level.text = $"Level: {LevelManager.Instance.CurrentLevel}";
     }
 }

@@ -5,11 +5,13 @@ public class MainMenuWindow : Window
 {
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button optionsGameButton;
+    [SerializeField] private Button exitGameButton;
 
     public override void Initialize()
     {
-        startGameButton.onClick.AddListener(StartGame);
-        optionsGameButton.onClick.AddListener(OpenOptions);
+        startGameButton.onClick.AddListener(() => StartGame());
+        optionsGameButton.onClick.AddListener(() => OpenOptions());
+        exitGameButton.onClick.AddListener(() => ExitGame());
     }
 
     protected override void OpenEnd() => SetButtonsInteractable(true);
@@ -17,9 +19,9 @@ public class MainMenuWindow : Window
 
     private void StartGame()
     {
-        var gameManager = GameManager.Instance;
-        gameManager.StartGame();
-        gameManager.WindowsService.ShowWindow<GameplayWindow>(true);
+        var gm = GameManager.Instance;
+        gm.StartGame();
+        gm.WindowsService.ShowWindow<GameplayWindow>(true);
         Hide(false);
     }
 
@@ -29,9 +31,20 @@ public class MainMenuWindow : Window
         GameManager.Instance.WindowsService.ShowWindow<OptionsWindow>(true);
     }
 
+    private void ExitGame()
+    {
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
+    }
+
+
     private void SetButtonsInteractable(bool state)
     {
         startGameButton.interactable = state;
         optionsGameButton.interactable = state;
+        exitGameButton.interactable = state;
     }
 }

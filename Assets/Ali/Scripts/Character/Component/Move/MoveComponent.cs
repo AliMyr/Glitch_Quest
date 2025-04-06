@@ -25,9 +25,15 @@ public class MoveComponent : IMovableComponent
 
     public void Move(Vector3 direction)
     {
-        if (direction == Vector3.zero || selfCharacter?.CharacterController == null) return;
+        if (direction == Vector3.zero || selfCharacter?.CharacterController == null) 
+        {
+            selfCharacter.AnimationComponent.SetValue("Movement", 0);
+            return;
+        }
         Vector3 movement = direction.normalized * Speed * Time.deltaTime;
         selfCharacter.CharacterController.Move(movement);
+
+        selfCharacter.AnimationComponent.SetValue("Movement", Speed);
     }
 
     public void Rotate(Vector3 direction)

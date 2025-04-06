@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 7723063307771877267}
   - component: {fileID: 4806115119818733630}
   - component: {fileID: 6335706846168466095}
+  - component: {fileID: 1552262445491787768}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -184,7 +185,29 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: f6863bd22ff2a484ca25ade05158628a, type: 2}
   characterTransform: {fileID: 7723063307771877267}
   characterController: {fileID: 4806115119818733630}
+  animatorController: {fileID: 1552262445491787768}
   inventoryItemPrefab: {fileID: 4748063453898035173, guid: fa5aaf463a44c794795c0b58a2147e36, type: 3}
+--- !u!95 &1552262445491787768
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890663591277901755}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 6955062d48314ef468079cb4e69db208, type: 3}
+  m_Controller: {fileID: 9100000, guid: 49a1f357620cb28469c9ff7a6918ec2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7915555148220846764
 GameObject:
   m_ObjectHideFlags: 0

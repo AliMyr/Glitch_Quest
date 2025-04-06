@@ -43,5 +43,10 @@ public class JumpMechanic : IMechanic, IUpdatableMechanic
         }
         Vector3 jumpMovement = new Vector3(0, VerticalVelocity, 0);
         character.CharacterController.Move(jumpMovement * Time.deltaTime);
+
+        if (character.AnimationComponent is IAnimationComponent animation)
+        {
+            animation.SetTrigger("JumpTrigger");
+        }
     }
 }

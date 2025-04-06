@@ -7,23 +7,15 @@ public class CharacterAnimationComponent : IAnimationComponent
         this.character = character;
     }
 
-    public void SetAnimation(string animationName)
-    {
+    public void SetAnimation(string animationName) =>
         character?.Animator?.Play(animationName);
-    }
 
-    public void SetTrigger(string triggerName)
-    {
+    public void SetTrigger(string triggerName) =>
         character?.Animator?.SetTrigger(triggerName);
-    }
 
-    public void SetBool(string boolName, bool status)
-    {
+    public void SetBool(string boolName, bool status) =>
         character?.Animator?.SetBool(boolName, status);
-    }
 
-    public void SetValue(string valueName, float value)
-    {
+    public void SetValue(string valueName, float value) =>
         character?.Animator?.SetFloat(valueName, value);
-    }
 }

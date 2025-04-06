@@ -2,26 +2,27 @@ using UnityEngine;
 
 public class PlayerCharacter : Character
 {
-    [SerializeField] private GameObject inventoryItemPrefab;
+    
 
     public override void Initialize()
     {
         base.Initialize();
-        mechanicManager.RegisterMechanic(2, new RotateMechanic());
-        mechanicManager.RegisterMechanic(3, new JumpMechanic());
-        mechanicManager.RegisterMechanic(4, new InventoryMechanic(inventoryItemPrefab));
-        mechanicManager.RegisterMechanic(5, new AnimationMechanic());
-        mechanicManager.RegisterMechanic(6, new PhysicsMechanic());
-        mechanicManager.RegisterMechanic(7, new FinalMechanic());
+
+        MechanicManager.RegisterMechanic(2, new RotationMechanicWrapper());
+        MechanicManager.RegisterMechanic(3, new JumpMechanicWrapper());
+        MechanicManager.RegisterMechanic(4, new InventoryMechanicWrapper());
+        MechanicManager.RegisterMechanic(5, new AnimationMechanicWrapper());
+        MechanicManager.RegisterMechanic(6, new PhysicsMechanicWrapper());
+        MechanicManager.RegisterMechanic(7, new FinalMechanicWrapper());
     }
 
     private void Update()
     {
-        if (MovableComponent == null) return;
+        if (MovementComponent == null) return;
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        MovableComponent.Move(moveDirection);
-        MovableComponent.Rotate(moveDirection);
-        mechanicManager.UpdateMechanics();
+        MovementComponent.Move(moveDirection);
+        RotationComponent.Rotate(moveDirection);
+        MechanicManager.UpdateMechanics();
     }
 
     public override void CharacterUpdate() { }

@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class JumpMechanic : IMechanic, IUpdatableMechanic, ICharacterComponent
+public class JumpComponent : IJumpComponent
 {
     private Character character;
     public float JumpForce { get; set; }
     public float Gravity { get; set; }
     public float VerticalVelocity { get; set; }
+    private bool isActive;
 
     public void Initialize(Character character)
     {
@@ -13,14 +14,17 @@ public class JumpMechanic : IMechanic, IUpdatableMechanic, ICharacterComponent
         JumpForce = character.CharacterData.JumpForce;
         Gravity = character.CharacterData.Gravity;
         VerticalVelocity = 0f;
+        isActive = false;
     }
 
-    public void Enable() { }
-    public void Disable() { }
+    public void Enable() => isActive = true;
+    public void Disable() => isActive = false;
 
     public void Update()
     {
-        if (character == null || character.CharacterController == null) return;
+        if (!isActive) return;
+        if (character == null || character.CharacterController == null)
+            return;
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;

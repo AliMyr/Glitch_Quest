@@ -186,7 +186,7 @@ MonoBehaviour:
   characterTransform: {fileID: 7723063307771877267}
   characterController: {fileID: 4806115119818733630}
   animatorController: {fileID: 1552262445491787768}
-  inventoryItemPrefab: {fileID: 4748063453898035173, guid: fa5aaf463a44c794795c0b58a2147e36, type: 3}
+  inventoryItemPrefab: {fileID: 5698487066478391084, guid: ae2601b0a93f8aa4bac2d068a50c29fb, type: 3}
 --- !u!95 &1552262445491787768
 Animator:
   serializedVersion: 5

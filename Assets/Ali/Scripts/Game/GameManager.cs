@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private WindowsService windowsService;
     private bool isGameActive;
+
     public static GameManager Instance { get; private set; }
+    public WindowsService WindowsService => windowsService;
+    public bool IsGameActive => isGameActive;
 
     public Character player;
 

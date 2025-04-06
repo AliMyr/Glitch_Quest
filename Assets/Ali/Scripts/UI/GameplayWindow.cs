@@ -23,6 +23,16 @@ public class GameplayWindow : Window
         base.CloseStart();
     }
 
+    protected override void OpenEnd()
+    {
+        base.OpenEnd();
+    }
+
+    protected override void CloseEnd()
+    {
+        base.CloseEnd();
+    }
+
     private void Update()
     {
         if (LevelManager.Instance != null)

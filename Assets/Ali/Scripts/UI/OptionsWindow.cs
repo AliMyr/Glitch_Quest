@@ -12,6 +12,27 @@ public class OptionsWindow : Window
         closeButton.onClick.AddListener(CloseOptions);
     }
 
+    protected override void OpenStart()
+    {
+        base.OpenStart();
+    }
+
+
+    protected override void CloseStart()
+    {
+        base.CloseStart();
+    }
+
+    protected override void OpenEnd()
+    {
+        base.OpenEnd();
+    }
+
+    protected override void CloseEnd()
+    {
+        base.CloseEnd();
+    }
+
     private void CloseOptions()
     {
         Hide(true);

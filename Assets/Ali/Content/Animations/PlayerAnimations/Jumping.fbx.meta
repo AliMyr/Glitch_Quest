@@ -16,8 +16,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
-      Ensure both rig type match\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -529,28 +528,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: T-Pose(Clone)
+    - name: Player(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: imagePlane1
-      parentName: T-Pose(Clone)
-      position: {x: -0.2178524, y: 0.42285812, z: -2.5555403}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 9.241649, y: 9.241649, z: 20.014513}
-    - name: imagePlane2
-      parentName: T-Pose(Clone)
-      position: {x: 2.260752, y: 0.42285812, z: 0.2648256}
-      rotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-      scale: {x: 9.241649, y: 9.241649, z: 20.014513}
     - name: polySurface9
-      parentName: T-Pose(Clone)
+      parentName: Player(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: T-Pose(Clone)
+      parentName: Player(Clone)
       position: {x: 0.000009211039, y: 0.31149223, z: 0.0019562175}
       rotation: {x: 0.00000075728224, y: 0.0000016960662, z: -0.00009344424, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -632,7 +621,7 @@ ModelImporter:
     - name: mixamorig:HeadTop_End
       parentName: mixamorig:Head
       position: {x: -0, y: 0.22207424, z: 0.046777394}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 6.938894e-18, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightShoulder
       parentName: mixamorig:Spine2
@@ -886,7 +875,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6955062d48314ef468079cb4e69db208, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 71e9873b9dd0b834f9ef10b6d77959ee, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

@@ -7,5 +7,5 @@ public interface IJumpComponent : ICharacterComponent, IUpdatableMechanic
     float VerticalVelocity { get; set; }
     void Enable();
     void Disable();
-    Vector3 CalculateJumpMovement();
+    Vector3 CalculateJumpMovement(bool jumpPressed);
 }

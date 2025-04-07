@@ -20,7 +20,7 @@ public class JumpComponent : IJumpComponent
     public void Enable() => isActive = true;
     public void Disable() => isActive = false;
 
-    public Vector3 CalculateJumpMovement()
+    public Vector3 CalculateJumpMovement(bool jumpPressed)
     {
         if (!isActive) return Vector3.zero;
         if (character == null || character.CharacterController == null)
@@ -29,7 +29,7 @@ public class JumpComponent : IJumpComponent
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;
-            if (Input.GetButtonDown("Jump"))
+            if (jumpPressed)
             {
                 VerticalVelocity = JumpForce;
                 character.AnimationComponent?.SetTrigger("JumpTrigger");

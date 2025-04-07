@@ -21,9 +21,15 @@ public class PlayerControlComponent : IControlComponent
         float x = inputService.Direction.x;
         float z = inputService.Direction.y;
         Vector3 moveDirection = new Vector3(x, 0, z).normalized;
-        MovementComponent.Move(moveDirection);
+        Vector3 horizontalMovement = MovementComponent.CalculateMovement(moveDirection);
+        Vector3 verticalMovement = JumpComponent.CalculateJumpMovement(inputService.Jump);
+        Vector3 totalMovement = (horizontalMovement + verticalMovement) * Time.deltaTime;
+        character.CharacterController.Move(totalMovement);
         RotationComponent.Rotate(moveDirection);
-        JumpComponent.Update();
-        InventoryComponent.Update();
+
+        if (inputService.Use)
+            InventoryComponent.PickupItem();
+        if (inputService.Throw)
+            InventoryComponent.DropItem();
     }
 }

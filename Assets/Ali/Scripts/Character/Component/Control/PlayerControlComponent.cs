@@ -19,17 +19,11 @@ public class PlayerControlComponent : IControlComponent
     public void OnUpdate()
     {
         float x = inputService.Direction.x;
-        float y = inputService.Direction.y;
-
+        float z = inputService.Direction.y;
         Vector3 moveDirection = new Vector3(x, 0, z).normalized;
         MovementComponent.Move(moveDirection);
-
         RotationComponent.Rotate(moveDirection);
-
         JumpComponent.Update();
         InventoryComponent.Update();
-        
     }
-
-
 }

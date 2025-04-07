@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public WindowsService WindowsService => windowsService;
     public bool IsGameActive => gameActive;
     public Character Player;
+    public IInputService InputService { get; set; }
 
     private void Awake()
     {
@@ -25,10 +26,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Initialize()
-    {
-        gameActive = false;
-    }
+    private void Initialize() => gameActive = false;
 
     public void StartGame()
     {

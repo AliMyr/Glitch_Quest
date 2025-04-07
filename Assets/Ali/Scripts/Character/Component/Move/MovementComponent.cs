@@ -30,7 +30,10 @@ public class MovementComponent : IMovementComponent
 
     public void Move(Vector3 direction)
     {
-        
+        if (character == null || character.CharacterController == null)
+            return;
+        Vector3 movement = CalculateMovement(direction);
+        character.CharacterController.Move(movement * Time.deltaTime);
     }
 }
 

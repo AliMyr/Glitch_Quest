@@ -36,7 +36,7 @@ public class InventoryComponent : IInventoryComponent
         {
             if (collider.CompareTag("Pickup"))
             {
-                var pickup = collider.GetComponent<PickupItem>();
+                var pickup = collider.GetComponent<PItem>();
                 if (pickup != null)
                 {
                     currentItem = new Item(pickup.itemName);

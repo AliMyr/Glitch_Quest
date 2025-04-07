@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickupItem : MonoBehaviour
+public class PItem : MonoBehaviour
 {
     public string itemName = "UniqueItem";
 }

@@ -14,22 +14,21 @@ public class JumpComponent : IJumpComponent
         JumpForce = character.CharacterData.JumpForce;
         Gravity = character.CharacterData.Gravity;
         VerticalVelocity = 0f;
-        isActive = false;
+        isActive = true;
     }
 
     public void Enable() => isActive = true;
     public void Disable() => isActive = false;
 
-    public Vector3 CalculateJumpMovement()
+    public Vector3 CalculateJumpMovement(bool jumpInput)
     {
-        if (!isActive) return Vector3.zero;
-        if (character == null || character.CharacterController == null)
+        if (!isActive || character == null || character.CharacterController == null)
             return Vector3.zero;
 
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;
-            if (Input.GetButtonDown("Jump"))
+            if (jumpInput)
             {
                 VerticalVelocity = JumpForce;
                 character.AnimationComponent?.SetTrigger("JumpTrigger");
@@ -42,7 +41,5 @@ public class JumpComponent : IJumpComponent
         return new Vector3(0, VerticalVelocity, 0);
     }
 
-    public void Update()
-    {
-    }
+    public void Update() { }
 }

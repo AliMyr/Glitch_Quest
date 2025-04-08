@@ -73,9 +73,12 @@ public class InventoryComponent : IInventoryComponent
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            PickupItem();
-        if (Input.GetKeyDown(KeyCode.Q))
-            DropItem();
+        if (GameManager.Instance.InputService is NewInputService)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+                PickupItem();
+            if (Input.GetKeyDown(KeyCode.Q))
+                DropItem();
+        }
     }
 }

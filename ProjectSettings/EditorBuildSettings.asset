@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Ali/Scenes/test.unity
+    guid: a5499f65e29b91b47a6c80c1e1ecffc6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a6eccfcd263e29e4e8ab13249f8a3a3e, type: 3}

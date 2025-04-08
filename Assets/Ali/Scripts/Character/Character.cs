@@ -8,12 +8,12 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private Animator animatorController;
     [SerializeField] private InventoryComponent inventoryComponent;
 
-    public IMovementComponent MovementComponent { get; private set; }
-    public IRotationComponent RotationComponent { get; private set; }
-    public IJumpComponent JumpComponent { get; private set; }
-    public IInventoryComponent InventoryComponent { get; private set; }
-    public IAnimationComponent AnimationComponent { get; private set; }
-    protected MechanicManager MechanicManager { get; private set; }
+    public IMovementComponent MovementComponent { get; protected set; }
+    public IRotationComponent RotationComponent { get; protected set; }
+    public IJumpComponent JumpComponent { get; protected set; }
+    public IInventoryComponent InventoryComponent { get; protected set; }
+    public IAnimationComponent AnimationComponent { get; protected set; }
+    public MechanicManager MechanicManager { get; protected set; }
 
     public CharacterData CharacterData => characterData;
     public Transform CharacterTransform => characterTransform;
@@ -41,11 +41,9 @@ public abstract class Character : MonoBehaviour
 
         MechanicManager = new MechanicManager();
         MechanicManager.Initialize(this);
-
         LevelManager.Instance.Initialize(MechanicManager);
         MechanicManager.ActivateMechanicsForLevel(LevelManager.Instance.CurrentLevel);
     }
-
 
     public abstract void CharacterUpdate();
 }

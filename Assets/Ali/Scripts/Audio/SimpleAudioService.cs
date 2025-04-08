@@ -18,13 +18,15 @@ public class SimpleAudioService : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void SetVolume(AudioSystemType type, bool isEnabled) =>
+    public void SetVolume(AudioSystemType type, bool isEnabled)
+    {
         SetVolume(type, isEnabled ? 1f : 0f);
+    }
 
     public void SetVolume(AudioSystemType type, float volume)
     {
         string parameter = type.ToString();
-        float dB = Mathf.Lerp(DB_MIN, DB_MAX, volume);
+        float dB = UnityEngine.Mathf.Lerp(DB_MIN, DB_MAX, volume);
         audioMixer.SetFloat(parameter, dB);
     }
 }

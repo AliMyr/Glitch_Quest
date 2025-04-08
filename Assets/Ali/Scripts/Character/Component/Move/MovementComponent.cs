@@ -36,4 +36,3 @@ public class MovementComponent : IMovementComponent
         character.CharacterController.Move(movement * Time.deltaTime);
     }
 }
-

@@ -22,10 +22,8 @@ public class JumpComponent : IJumpComponent
 
     public Vector3 CalculateJumpMovement(bool jumpPressed)
     {
-        if (!isActive) return Vector3.zero;
-        if (character == null || character.CharacterController == null)
+        if (!isActive || character == null || character.CharacterController == null)
             return Vector3.zero;
-
         if (character.CharacterController.isGrounded)
         {
             VerticalVelocity = -1f;
@@ -42,7 +40,5 @@ public class JumpComponent : IJumpComponent
         return new Vector3(0, VerticalVelocity, 0);
     }
 
-    public void Update()
-    {
-    }
+    public void Update() { }
 }

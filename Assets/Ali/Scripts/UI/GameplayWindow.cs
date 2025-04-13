@@ -10,21 +10,21 @@ public class GameplayWindow : Window
     [SerializeField] private Button useButton;
     [SerializeField] private Button throwButton;
 
-    private UIInputService uiInputService;
+    private MobileInputService mobileInputService;
 
     public override void Initialize()
     {
-        uiInputService = new UIInputService();
-        GameManager.Instance.InputService = uiInputService;
+        mobileInputService = new MobileInputService();
+        GameManager.Instance.InputService = mobileInputService;
 
-        jumpButton.onClick.AddListener(() => uiInputService.SetJump(true));
-        useButton.onClick.AddListener(() => uiInputService.SetUse(true));
-        throwButton.onClick.AddListener(() => uiInputService.SetThrow(true));
+        jumpButton.onClick.AddListener(() => mobileInputService.SetJump(true));
+        useButton.onClick.AddListener(() => mobileInputService.SetUse(true));
+        throwButton.onClick.AddListener(() => mobileInputService.SetThrow(true));
     }
 
     private void Update()
     {
-        uiInputService.SetDirection(joystick.Direction);
+        mobileInputService.SetDirection(joystick.Direction);
         levelText.text = "Level: " + LevelManager.Instance.CurrentLevel;
     }
 }

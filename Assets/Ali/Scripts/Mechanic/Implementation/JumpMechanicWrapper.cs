@@ -63,7 +63,13 @@ public class JumpMechanicWrapper : IMechanic, IUpdatableMechanic
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpPressed = true;
-            Debug.Log("Jump key pressed");
+            Debug.Log("Jump key pressed (Space)");
+
+            // Для тестирования можно также напрямую установить Jump в InputService
+            if (GameManager.Instance != null && GameManager.Instance.InputService != null)
+            {
+                GameManager.Instance.InputService.SetJump(true);
+            }
         }
 
         // Применяем прыжок
@@ -87,6 +93,13 @@ public class JumpMechanicWrapper : IMechanic, IUpdatableMechanic
 
                 Debug.Log("Jump executed with force: " + jumpForce);
             }
+        }
+
+        // Применяем вертикальное движение от прыжка/гравитации
+        if (character.CharacterController != null)
+        {
+            Vector3 jumpMovement = character.JumpComponent.CalculateJumpMovement(jumpPressed);
+            character.CharacterController.Move(jumpMovement * Time.deltaTime);
         }
 
         // Отладочное логирование

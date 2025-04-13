@@ -14,14 +14,14 @@ public abstract class Window : MonoBehaviour
 
     public virtual void Initialize() { }
 
-    public void Show(bool immediate)
+    public virtual void Show(bool immediate)
     {
         OpenStart();
         Animator.Play(immediate ? idleAnimationName : openAnimationName);
         if (immediate) OpenEnd();
     }
 
-    public void Hide(bool immediate)
+    public virtual void Hide(bool immediate)
     {
         CloseStart();
         if (Animator != null && gameObject.activeInHierarchy)

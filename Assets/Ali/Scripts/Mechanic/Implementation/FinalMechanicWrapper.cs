@@ -11,12 +11,10 @@ public class FinalMechanicWrapper : IMechanic, IUpdatableMechanic
     }
 
     public void Enable() { }
-
     public void Disable() { }
 
     public void Update()
     {
-        character.InventoryComponent?.Update();
         if (!companionActivated)
         {
             CompanionComponent companion = Object.FindObjectOfType<CompanionComponent>();

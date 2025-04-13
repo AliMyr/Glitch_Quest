@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             windowsService.Initialize();
             Initialize();
+            InputService = InputServiceFactory.Create();
         }
         else
         {

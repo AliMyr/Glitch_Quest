@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CameraService : MonoBehaviour
 {
+    public static CameraService Instance { get; private set; }
+
     [SerializeField] private Vector3 offset = new Vector3(0, 5, -10);
     [SerializeField] private float lerpSpeed = 5f;
     [SerializeField] private float rotationSpeed = 0.2f;
@@ -14,6 +16,15 @@ public class CameraService : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         mainCamera = Camera.main;
         currentYaw = mainCamera.transform.eulerAngles.y;
         currentPitch = mainCamera.transform.eulerAngles.x;
@@ -32,7 +43,6 @@ public class CameraService : MonoBehaviour
         if (gm?.Player != null && mainCamera != null)
         {
             Quaternion rotation = Quaternion.Euler(currentPitch, currentYaw, 0);
-
             Vector3 targetPos = gm.Player.transform.position + rotation * offset;
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPos, lerpSpeed * Time.deltaTime);
             mainCamera.transform.LookAt(gm.Player.transform.position);

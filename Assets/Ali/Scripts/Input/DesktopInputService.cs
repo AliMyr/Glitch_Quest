@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewInputService : IInputService
+public class DesktopInputService : IInputService
 {
     public Vector2 Direction => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     public bool Jump => Input.GetButtonDown("Jump");

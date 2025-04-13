@@ -11,84 +11,34 @@ public class JumpComponent : IJumpComponent
     public void Initialize(Character character)
     {
         this.character = character;
-
-        if (character == null || character.CharacterData == null)
-        {
-            Debug.LogError("JumpComponent: Character or CharacterData is null");
-            // Значения по умолчанию
-            JumpForce = 5f;
-            Gravity = -9.81f;
-        }
-        else
-        {
-            JumpForce = character.CharacterData.JumpForce;
-            Gravity = character.CharacterData.Gravity;
-        }
-
+        JumpForce = character.CharacterData.JumpForce;
+        Gravity = character.CharacterData.Gravity;
         VerticalVelocity = 0f;
         isActive = false;
-        Debug.Log("JumpComponent: Initialized");
     }
 
-    public void Enable()
-    {
-        isActive = true;
-        Debug.Log("JumpComponent: Enabled");
-    }
-
-    public void Disable()
-    {
-        isActive = false;
-        Debug.Log("JumpComponent: Disabled");
-    }
+    public void Enable() => isActive = true;
+    public void Disable() => isActive = false;
 
     public Vector3 CalculateJumpMovement(bool jumpPressed)
     {
-        // Проверки на null и активность
-        if (!isActive) return Vector3.zero;
-        if (character == null)
-        {
-            Debug.LogWarning("JumpComponent: Character is null");
+        if (!isActive || character == null || character.CharacterController == null)
             return Vector3.zero;
-        }
-        if (character.CharacterController == null)
-        {
-            Debug.LogWarning("JumpComponent: CharacterController is null");
-            return Vector3.zero;
-        }
-
-        // Логика прыжка
         if (character.CharacterController.isGrounded)
         {
-            VerticalVelocity = -1f; // Небольшая сила вниз для сохранения isGrounded
-
+            VerticalVelocity = -1f;
             if (jumpPressed)
             {
                 VerticalVelocity = JumpForce;
-
-                // Безопасный вызов триггера анимации
-                if (character.AnimationComponent != null)
-                {
-                    character.AnimationComponent.SetTrigger("JumpTrigger");
-                }
-                else
-                {
-                    Debug.LogWarning("JumpComponent: AnimationComponent is null");
-                }
+                character.AnimationComponent?.SetTrigger("JumpTrigger");
             }
         }
         else
         {
             VerticalVelocity += Gravity * Time.deltaTime;
         }
-
         return new Vector3(0, VerticalVelocity, 0);
     }
 
-    public void Update()
-    {
-        if (isActive && character != null && character.CharacterController != null)
-        {
-        }
-    }
+    public void Update() { }
 }

@@ -9,6 +9,7 @@ public class InventoryComponent : IInventoryComponent
     [SerializeField] private AllowedItemPrefab[] allowedItems;
     private Dictionary<string, GameObject> allowedPrefabs;
     private float pickupRadius = 2f;
+    private bool isActive;
 
     public bool HasItem => currentItem != null;
     public Item CurrentItem => currentItem;
@@ -22,13 +23,20 @@ public class InventoryComponent : IInventoryComponent
             if (item != null && !allowedPrefabs.ContainsKey(item.itemName))
                 allowedPrefabs.Add(item.itemName, item.prefab);
         }
+        isActive = false;
     }
+
+    public void ActivateInventory() => isActive = true;
+    public void DeactivateInventory() => isActive = false;
 
     public void PickupItem()
     {
+        if (!isActive)
+        {
+            return;
+        }
         if (currentItem != null)
         {
-            Debug.Log("Inventory is full.");
             return;
         }
         Collider[] colliders = Physics.OverlapSphere(character.CharacterTransform.position, pickupRadius);
@@ -40,20 +48,21 @@ public class InventoryComponent : IInventoryComponent
                 if (pickup != null)
                 {
                     currentItem = new Item(pickup.itemName);
-                    Debug.Log("Picked up item: " + currentItem.Name);
                     Object.Destroy(collider.gameObject);
                     return;
                 }
             }
         }
-        Debug.Log("No pickup item found nearby.");
     }
 
     public void DropItem()
     {
+        if (!isActive)
+        {
+            return;
+        }
         if (currentItem == null)
         {
-            Debug.Log("No item to drop.");
             return;
         }
         if (allowedPrefabs.TryGetValue(currentItem.Name, out var prefab))
@@ -62,23 +71,7 @@ public class InventoryComponent : IInventoryComponent
                                    character.CharacterTransform.forward +
                                    new Vector3(0, 0.5f, 0);
             Object.Instantiate(prefab, dropPosition, Quaternion.identity);
-            Debug.Log("Dropped item: " + currentItem.Name);
             currentItem = null;
-        }
-        else
-        {
-            Debug.Log("No allowed prefab for item: " + currentItem.Name);
-        }
-    }
-
-    public void Update()
-    {
-        if (GameManager.Instance.InputService is NewInputService)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-                PickupItem();
-            if (Input.GetKeyDown(KeyCode.Q))
-                DropItem();
         }
     }
 }

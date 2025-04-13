@@ -1,4 +1,4 @@
-public class InventoryMechanicWrapper : IMechanic, IUpdatableMechanic
+public class InventoryMechanicWrapper : IMechanic
 {
     private Character character;
     private bool isActive = false;
@@ -12,17 +12,12 @@ public class InventoryMechanicWrapper : IMechanic, IUpdatableMechanic
     public void Enable()
     {
         isActive = true;
+        character.InventoryComponent.ActivateInventory();
     }
 
     public void Disable()
     {
         isActive = false;
-    }
-
-    public void Update()
-    {
-        if (!isActive)
-            return;
-        character.InventoryComponent?.Update();
+        character.InventoryComponent.DeactivateInventory();
     }
 }

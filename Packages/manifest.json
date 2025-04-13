@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.justinpbarnett.unity-mcp": "file:C:/Users/nursa/Desktop/unity-mcp/UnityMcpBridge",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.device-simulator.devices": "1.0.0",
     "com.unity.feature.development": "1.0.1",

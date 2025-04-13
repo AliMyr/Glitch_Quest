@@ -22,6 +22,11 @@ public abstract class Character : MonoBehaviour
 
     public virtual void Initialize()
     {
+        
+    }
+
+    public virtual void InitializeComponents()
+    {
         MovementComponent = new MovementComponent();
         MovementComponent.Initialize(this);
 
@@ -38,11 +43,18 @@ public abstract class Character : MonoBehaviour
 
         AnimationComponent = new CharacterAnimationComponent();
         AnimationComponent.Initialize(this);
+    }
 
-        MechanicManager = new MechanicManager();
-        MechanicManager.Initialize(this);
-        LevelManager.Instance.Initialize(MechanicManager);
-        MechanicManager.ActivateMechanicsForLevel(LevelManager.Instance.CurrentLevel);
+    public virtual void CompleteInitsializion()
+    {
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.Initialize(MechanicManager);
+
+            MechanicManager.ActivateMechanicsForLevel(LevelManager.Instance.CurrentLevel);
+
+            print("Mechanics activated for level: " + LevelManager.Instance.CurrentLevel);
+        }
     }
 
     public abstract void CharacterUpdate();

@@ -191,7 +191,7 @@ MonoBehaviour:
     allowedItems:
     - itemName: Cube
       prefab: {fileID: 2908167473125869077, guid: ae2601b0a93f8aa4bac2d068a50c29fb, type: 3}
-    - itemName: Box_Phys
+    - itemName: UniqueItem
       prefab: {fileID: 1980793535644606132, guid: 42224b63b9d39b3478a5efcd002c566c, type: 3}
 --- !u!95 &1762855074164256119
 Animator:

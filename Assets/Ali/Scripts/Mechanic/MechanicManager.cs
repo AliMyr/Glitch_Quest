@@ -40,39 +40,15 @@ public class MechanicManager
             return;
         }
 
-        Debug.Log($"Activating mechanics for level {level}");
+        ClearMechanics();
 
-        // ƒеактивируем все активные механики, если переходим на более низкий уровень
-        if (level < highestActivatedLevel)
-        {
-            foreach (var mechanic in activeMechanics)
-            {
-                if (mechanic != null)
-                {
-                    mechanic.Disable();
-                    Debug.Log($"Disabled mechanic: {mechanic.GetType().Name}");
-                }
-            }
-            activeMechanics.Clear();
-            highestActivatedLevel = 0;
-        }
-
-        // јктивируем механики дл€ всех уровней до текущего включительно
         for (int i = 1; i <= level; i++)
         {
             if (levelMechanics.TryGetValue(i, out var mechanics))
             {
                 foreach (var mechanic in mechanics)
                 {
-                    if (mechanic == null)
-                    {
-                        Debug.LogError("Mechanic is null in ActivateMechanicsForLevel");
-                        continue;
-                    }
-
-                    // ѕропускаем, если механика уже активна
-                    if (activeMechanics.Contains(mechanic))
-                        continue;
+                    if (mechanic == null) continue;
 
                     mechanic.Initialize(character);
                     mechanic.Enable();
@@ -80,16 +56,6 @@ public class MechanicManager
                     Debug.Log($"Activated mechanic: {mechanic.GetType().Name} for level {i}");
                 }
             }
-            else
-            {
-                Debug.LogWarning($"No mechanics registered for level {i}");
-            }
-        }
-
-        // ќбновл€ем самый высокий активированный уровень
-        if (level > highestActivatedLevel)
-        {
-            highestActivatedLevel = level;
         }
     }
 

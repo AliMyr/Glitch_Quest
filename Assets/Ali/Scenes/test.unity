@@ -17612,17 +17612,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae2601b0a93f8aa4bac2d068a50c29fb, type: 3}
---- !u!114 &1488629956 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6335706846168466095, guid: a5fa7f9bf2c9e4c4c9b97d86ef3e3934, type: 3}
-  m_PrefabInstance: {fileID: 4470552681011113122}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e6a6d58968ff144ac8bda7cd47e809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1491281131
 GameObject:
   m_ObjectHideFlags: 0
@@ -22653,6 +22642,7 @@ MonoBehaviour:
   windowsService: {fileID: 304984403}
   playerPrefab: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
+  useNewInputSystem: 1
 --- !u!4 &1870626801
 Transform:
   m_ObjectHideFlags: 0
@@ -25251,15 +25241,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 299840372}
-  - {fileID: 1120049905}
   - {fileID: 1140038677}
   - {fileID: 1928145728}
   - {fileID: 1058208202}
   - {fileID: 299407743}
-  - {fileID: 304984404}
-  - {fileID: 1870626801}
-  - {fileID: 1742860617}
-  - {fileID: 16644818}
   - {fileID: 982295751}
   - {fileID: 172696890}
   - {fileID: 1809660622}
@@ -25267,3 +25252,8 @@ SceneRoots:
   - {fileID: 230420444}
   - {fileID: 957294844}
   - {fileID: 835867511}
+  - {fileID: 4470552681011113122}
+  - {fileID: 28304373}
+  - {fileID: 725852189}
+  - {fileID: 1434991013}
+  - {fileID: 1923700168}

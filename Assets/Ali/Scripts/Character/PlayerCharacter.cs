@@ -38,7 +38,6 @@ public class PlayerCharacter : Character
                 GameManager.Instance.InputService = new UIInputService();
             }
 
-            Debug.Log("PlayerCharacter: Using InputService: " + GameManager.Instance.InputService.GetType().Name);
             controlComponent.Initialize(this);
 
             // Регистрируем механики
@@ -50,15 +49,11 @@ public class PlayerCharacter : Character
             MechanicManager.RegisterMechanic(6, new PhysicsMechanicWrapper());
             MechanicManager.RegisterMechanic(7, new FinalMechanicWrapper());
 
-            // Проверяем компоненты
-            if (CharacterController == null)
+            // Убедимся, что инвентарь активирован, независимо от уровня
+            if (InventoryComponent != null)
             {
-                Debug.LogError("PlayerCharacter: CharacterController is missing!");
-            }
-            else if (!CharacterController.enabled)
-            {
-                Debug.LogWarning("PlayerCharacter: CharacterController is disabled, enabling...");
-                CharacterController.enabled = true;
+                InventoryComponent.ActivateInventory();
+                Debug.Log("PlayerCharacter: InventoryComponent forcefully activated");
             }
 
             CompleteInitialization();

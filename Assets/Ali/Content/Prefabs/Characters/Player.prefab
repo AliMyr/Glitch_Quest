@@ -193,6 +193,8 @@ MonoBehaviour:
       prefab: {fileID: 2908167473125869077, guid: ae2601b0a93f8aa4bac2d068a50c29fb, type: 3}
     - itemName: Box_Phys
       prefab: {fileID: 1980793535644606132, guid: 42224b63b9d39b3478a5efcd002c566c, type: 3}
+    - itemName: Box
+      prefab: {fileID: 7434255143606696326, guid: c8a719a0d14b1054eb66f4ed0f7577ef, type: 3}
 --- !u!95 &1762855074164256119
 Animator:
   serializedVersion: 5
